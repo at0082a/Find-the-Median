@@ -17,9 +17,8 @@ class App extends React.Component {
 
   handleSubmit(event) {
     let number = this.state.value.replace(/\s/g, "");
-    console.log(typeof(number), "this is the typeof");
     event.preventDefault();
-    isNaN(number) || number % 1 !== 0 || number === '' ? this.setState({ alert: "Please Enter A Whole Number" })
+    isNaN(number) || number % 1 !== 0 || number === '' || number <= 2 ? this.setState({ alert: "Please Enter A Whole Number Greater Than 2" })
       :  
         fetch(`http://localhost:3002/prime/${number}`, {
           mode: 'cors', // lowercase
@@ -30,8 +29,7 @@ class App extends React.Component {
         .then (res => res.json())
         .then (response => 
           response.data.length === 2 ? this.setState ({ alert: `The median prime numbers are ${response.data[0]} and ${response.data[response.data.length - 1]}` })
-                                : this.setState ({ alert: `The median prime number is ${response.data}` }));
-        
+                                     : this.setState ({ alert: `The median prime number is ${response.data}` }));
         // this.setState({ value: "" });
       }
 
@@ -40,8 +38,10 @@ class App extends React.Component {
         <div className="App">
           <div className="App-Body">
             <img src={numbers} className="number-image" alt="logo" />
-            <h1 className="alert">{this.state.alert}</h1>
-            <p>Find The Median</p>
+            {!this.state.alert 
+             ? <p> Find The Median </p>
+             : <p> {this.state.alert} </p>
+            }
             <form onSubmit={this.handleSubmit}>
               <input
                 className="text-input"

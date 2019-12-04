@@ -4,9 +4,10 @@
   overflow: auto;
 }
 
-.cat-image {
+.number-image {
   animation: number-image-spin infinite 20s linear;
-  height: 54vmin;
+  height: 35vmin;
+  margin: 2em;
   pointer-events: none;
 }
 
@@ -49,7 +50,7 @@
 }
 
 .App-Body {
-  background-color: #282c34;
+  background-color: #28804c;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

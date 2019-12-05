@@ -26,8 +26,6 @@ testObj.sieve = (max) => {
       return primes;
     }, []);
 
-    console.log(result);
-
     result.length % 2 === 0 ? result = [ result[ (result.length / 2) - 1 ], result[ result.length / 2 ]]
                             : result = [result[Math.floor(result.length / 2)]] 
 

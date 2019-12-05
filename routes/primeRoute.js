@@ -6,7 +6,7 @@ router.get("/prime/:number", ( req, res) => {
   let number = Number.parseInt(req.params.number);
   let median = findMedian.sieve(number);
   console.log("this is mediannn", median);
-  res.send({data: median});
+  res.status(200).send({data: median});
 });
 
 module.exports = router;

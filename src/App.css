@@ -6,8 +6,9 @@
 
 .number-image {
   animation: number-image-spin infinite 20s linear;
-  height: 35vmin;
-  margin: 2em;
+  height: 25vmin;
+  margin: 3em;
+  border-radius: 95%;
   pointer-events: none;
 }
 

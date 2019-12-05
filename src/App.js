@@ -1,5 +1,5 @@
 import React from 'react';
-import numbers from './numbers.svg';
+import primes from './primes.svg';
 import './App.css';
 
 class App extends React.Component {
@@ -16,12 +16,14 @@ class App extends React.Component {
   }
 
   handleSubmit(event) {
+    //check for spaces before or after
     let number = this.state.value.replace(/\s/g, "");
     event.preventDefault();
+    //if user inputs text, a number lower than 3, or empty string, the error alert will appear below. 
     isNaN(number) || number % 1 !== 0 || number === '' || number <= 2 ? this.setState({ alert: "Please Enter A Whole Number Greater Than 2" })
       :  
         fetch(`http://localhost:3002/prime/${number}`, {
-          mode: 'cors', // lowercase
+          mode: 'cors',
           headers: {
           'Content-Type' : 'application/json'
           }
@@ -30,14 +32,13 @@ class App extends React.Component {
         .then (response => 
           response.data.length === 2 ? this.setState ({ alert: `The median prime numbers are ${response.data[0]} and ${response.data[response.data.length - 1]}` })
                                      : this.setState ({ alert: `The median prime number is ${response.data}` }));
-        // this.setState({ value: "" });
       }
 
   render () {
     return (
         <div className="App">
           <div className="App-Body">
-            <img src={numbers} className="number-image" alt="logo" />
+            <img src={primes} className="number-image" alt="logo" />
             {!this.state.alert 
              ? <p> Find The Median </p>
              : <p> {this.state.alert} </p>
@@ -46,7 +47,7 @@ class App extends React.Component {
               <input
                 className="text-input"
                 type="text"
-                placeholder="Enter Text Here"
+                placeholder="Enter Number Here"
                 onChange={this.handleChange}
                 value={this.state.value}
               />

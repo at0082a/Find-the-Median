@@ -34,7 +34,6 @@ testObj.sieve = (max) => {
     return result;
   };
 
-// console.log(sieve(10));
 
 module.exports = testObj;
 
